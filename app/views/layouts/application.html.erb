@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AsiPortal</title>
+    <title>ASI Portal</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= yield :stylesheets %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield :javascripts %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= navbar position: :top do %>
+      <div class="container">
+        <%= vertical do %>
+          <%= link_to root_path do %>
+            <span class="glyphicon glyphicon-cloud"/>
+            Home
+            <!--%= link_to "Clubs", clubs_path %-->
+          <% end %>
+        <% end %>
+        <%= horizontal do %>
+          <%= nav class: 'navbar-right' do %>
+            <%= link_to 'About', "" %>
+            <li class="dropdown">
+              <% if user_signed_in? %>
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <%= current_user.name || current_user.email %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <%= link_to 'Profile', edit_user_registration_path %>
+                  <%= link_to 'Sign Out', destroy_user_session_path %>
+                </ul>
+              <% else %>
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                  Account <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <%= link_to 'Sign In', new_user_session_path %>
+                  <%= link_to 'Sign Up', new_user_registration_path %>
+                </ul>
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="container">
+      <% if !flash.empty? %>
+        <div class="container" id="flash">
+          <% flash.each do |key, value| %>
+            <%= alert_box value, context: flash_class(key), dismissible: true %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+    <%= navbar position: :bottom do %>
+      <div class="container">
+        <%= vertical do %>
+          <p class="navbar-text">ASI Portal</p>
+        <% end %>
+      </div>
+    <% end %>
   </body>
 </html>
