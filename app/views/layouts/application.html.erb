@@ -17,12 +17,13 @@
           <%= link_to root_path do %>
             <span class="glyphicon glyphicon-cloud"/>
             Home
-            <!--%= link_to "Clubs", clubs_path %-->
           <% end %>
+          <!--%= link_to "Clubs", clubs_path %-->
         <% end %>
         <%= horizontal do %>
           <%= nav class: 'navbar-right' do %>
-            <%= link_to 'About', "" %>
+            <!--%= link_to 'About', "" %-->
+            <%= link_to "Invite", new_user_invitation_path %>
             <li class="dropdown">
               <% if user_signed_in? %>
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
