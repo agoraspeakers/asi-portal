@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @club.name %>
+</p>
+
+<%= link_to 'Edit', edit_club_path(@club) if can? :update, @club %> |
+<%= link_to 'Destroy', @club, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, @club %> |
+<%= link_to 'List', clubs_path %>

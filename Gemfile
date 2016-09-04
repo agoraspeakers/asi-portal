@@ -14,11 +14,11 @@ gem 'bootstrap-sass'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 # js
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
+# See https://github.com/rails/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
 
 # api
 gem 'jbuilder', '~> 2.5'
@@ -32,6 +32,10 @@ gem 'omniauth-instagram'
 gem 'omniauth-twitter'
 gem 'instagram'
 gem 'twitter'
+
+# utility
+gem "workflow"
+gem "cancancan", "~> 1.10"
 
 group :test do
   gem 'webmock'

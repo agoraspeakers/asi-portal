@@ -1,1 +1,7 @@
-<h1>Home</h1>
+<h3>
+  Users: <%= User.count %>
+</h3>
+<h3>
+  <%= link_to "Clubs: #{Club.count}", clubs_path %>
+  (confirmed: <%= Club.with_confirmed_state.count %>)
+</h3>
