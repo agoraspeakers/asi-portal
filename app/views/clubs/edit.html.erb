@@ -2,6 +2,7 @@
 
 <%= render 'form', club: @club %>
 
+<%= link_to 'Confirm', confirm_club_path(@club) if can? :confirm, @club %> |
 <%= link_to 'Show', @club %> |
 <%= link_to 'Destroy', @club, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, @club %> |
 <%= link_to 'List', clubs_path %>

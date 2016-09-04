@@ -35,6 +35,11 @@ class ClubsController < ApplicationController
     respond_with(@club)
   end
 
+  def confirm
+    @club.confirm!
+    redirect_to club_path(@club), alert: "Club confirmed"
+  end
+
 private
 
   def club_params

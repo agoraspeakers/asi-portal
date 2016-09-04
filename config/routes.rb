@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :pages, only: [:index]
-  resources :clubs
+  resources :clubs do
+    member do
+      get 'confirm'
+    end
+  end
 end
