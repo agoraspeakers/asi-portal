@@ -1,24 +1,42 @@
-# README
+# ASI Portal
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prototype for [Agora Speakers International](www.agoraspeakers.org)
+Portal.
 
-Things you may want to cover:
+## Code / Issues
 
-* Ruby version
+https://github.com/agoraspeakers/asi-portal
 
-* System dependencies
+## Requirements
 
-* Configuration
+This project is build with Ruby and Ruby on Rails.
 
-* Database creation
+Usual installation path requires:
 
-* Database initialization
+0. install MySQL/MariaDB
+0. install JavaScript engine like `nodejs`
+1. install [`ruby`](ruby-lang.org)
+2. install `bundler`: `gem install bundler`
+3. install project dependencies: `bundle install`
 
-* How to run the test suite
+## Running project
 
-* Services (job queues, cache servers, search engines, etc.)
+0. in database engine create user `asi` with password `asi` with rights
+   to create databases
+1. run `rails db:setup` to initialize database (`rails db:migrate` to only update)
+2. run `rails server` to start the application
+3. open browser at http://localhost:3000
 
-* Deployment instructions
+## License
 
-* ...
+[GNU Afero GPL](https://www.gnu.org/licenses/agpl-3.0.html)
+
+## Contrinutions
+
+1. Discuss,
+2. Clone,
+3. Update,
+4. Open PR.
+
+Before putting any effort into the project please discuss with other
+developers to avoid duplicate work or unecessary efforts.
