@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  # check_authorization TODO: enable it when Devise controlers are in app.
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
