@@ -31,7 +31,7 @@ Usual installation path requires:
 
 [GNU Afero GPL](https://www.gnu.org/licenses/agpl-3.0.html)
 
-## Contrinutions
+## Contributions
 
 1. Discuss,
 2. Clone,
