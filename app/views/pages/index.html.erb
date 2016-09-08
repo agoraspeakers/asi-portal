@@ -1,7 +1,7 @@
 <h3>
-  Users: <%= User.count %>
+  Users: <%= @user_count %>
 </h3>
 <h3>
-  <%= link_to "Clubs: #{Club.count}", clubs_path %>
-  (confirmed: <%= Club.with_confirmed_state.count %>)
+  <%= link_to "Clubs: #{@club_count}", clubs_path %>
+  (confirmed: <%= @confirmed_clubs_count %>)
 </h3>
