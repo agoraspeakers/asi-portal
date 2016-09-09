@@ -10,7 +10,7 @@ class MembershipsController < ApplicationController
   end
 
   def confirm
-    authorize! :confirm, @membership.club
+    authorize! :confirm, @membership
     @membership.update_attributes(status: "confirmed")
     respond_with(@membership.user)
   end

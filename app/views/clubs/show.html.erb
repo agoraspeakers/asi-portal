@@ -56,7 +56,7 @@
     <tbody>
       <% @requests.each do |membership| user = membership.user ; club = membership.club %>
         <tr>
-          <td><%= link_to club.name, club %></td>
+          <td><%= link_to user.email, user %></td>
           <td>
             <%= link_to 'Confirm', confirm_club_user_path(club, user), method: :put if can? :confirm, membership %>
             <%= link_to 'Remove',  resign_club_user_path(club, user), method: :delete, data: { confirm: 'Are you sure?' } if can? :resign, club %>

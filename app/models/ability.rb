@@ -12,7 +12,8 @@ class Ability
 
     when "admin"
       can    :crud,    :all
-      can    :confirm, :all, status: "requested"
+      can    :confirm, Club,       status: "requested"
+      can    :confirm, Membership, status: "requested"
 
       registered_users(user)
 
