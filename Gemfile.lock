@@ -74,6 +74,8 @@ GEM
     capistrano-rails (1.1.7)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    composite_primary_keys (9.0.4)
+      activerecord (~> 5.0.0)
     concurrent-ruby (1.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -282,6 +284,7 @@ DEPENDENCIES
   byebug
   cancancan (~> 1.10)
   capistrano-rails
+  composite_primary_keys (~> 9.0)
   devise (~> 4.2)
   devise_invitable
   instagram

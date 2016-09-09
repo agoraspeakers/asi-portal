@@ -36,6 +36,7 @@ gem 'twitter'
 # utility
 gem "workflow"
 gem "cancancan", "~> 1.10"
+gem "composite_primary_keys", "~> 9.0"
 
 group :test do
   gem 'webmock'

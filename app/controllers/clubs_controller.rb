@@ -3,11 +3,12 @@ class ClubsController < ApplicationController
   respond_to :html
 
   def index
-    @clubs = Club.all
     respond_with(@clubs)
   end
 
   def show
+    @members  = @club.memberships.with_confirmed_state
+    @requests = @club.memberships.with_requested_state
     respond_with(@club)
   end
 

@@ -17,7 +17,8 @@
         <td><%= link_to club.name, club %></td>
         <td><%= club.status %></td>
         <td>
-          <%= link_to 'Confirm', confirm_club_path(club) if can? :confirm, club %>
+          <%= link_to 'Confirm', confirm_club_path(club), method: :put if can? :confirm, club %>
+          <%= link_to 'Join', join_club_user_url(club, current_user), method: :post if can? :join, club %>
           <%= link_to 'Edit', edit_club_path(club) if can? :update, club %>
           <%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, club %>
         </td>

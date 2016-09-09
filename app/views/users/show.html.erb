@@ -1,0 +1,58 @@
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<% if @clubs_confirmed.none? %>
+  <h2>Does not belong to any clubs</h2>
+<% else %>
+  <h2>Belongs to clubs</h2>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @clubs_confirmed.each do |membership| club = membership.club %>
+        <tr>
+          <td><%= link_to club.name, club %></td>
+          <td>
+            <%= link_to 'Confirm', confirm_club_user_path(club, @user), method: :put if can? :confirm, membership %>
+            <%= link_to 'Resign',  resign_club_user_path(club, @user), method: :delete, data: { confirm: 'Are you sure?' } if can? :resign, club %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% if @clubs_requested.none? %>
+  <h2>Did not request membership in any clubs</h2>
+<% else %>
+  <h2>Requested membership in</h2>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @clubs_requested.each do |membership| club = membership.club %>
+        <tr>
+          <td><%= link_to club.name, club %></td>
+          <td>
+            <%= link_to 'Confirm', confirm_club_user_path(club, @user), method: :put if can? :confirm, membership %>
+            <%= link_to 'Resign',  resign_club_user_path(club, @user), method: :delete, data: { confirm: 'Are you sure?' } if can? :resign, club %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

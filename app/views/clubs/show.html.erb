@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @club.name %>
@@ -10,6 +8,61 @@
 </p>
 
 <%= link_to 'Confirm', confirm_club_path(@club) if can? :confirm, @club %> |
+<%= link_to 'Join',    join_club_user_url(@club, current_user), method: :post if can? :join, @club %>
 <%= link_to 'Edit',    edit_club_path(@club)    if can? :update, @club %> |
 <%= link_to 'Destroy', @club, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, @club %> |
 <%= link_to 'List',    clubs_path %>
+
+<% if @members.none? %>
+  <h2>No members</h2>
+<% else %>
+  <h2>Members</h2>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @members.each do |membership| user = membership.user ; club = membership.club %>
+        <tr>
+          <td><%= link_to user.email, user %></td>
+          <td>
+            <%= link_to 'Confirm', confirm_club_user_path(club, user), method: :put if can? :confirm, membership %>
+            <%= link_to 'Remove',  resign_club_user_path(club, user), method: :delete, data: { confirm: 'Are you sure?' } if can? :resign, club %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% if @requests.none? %>
+  <h2>No memberships requests</h2>
+<% else %>
+  <h2>Requests</h2>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @requests.each do |membership| user = membership.user ; club = membership.club %>
+        <tr>
+          <td><%= link_to club.name, club %></td>
+          <td>
+            <%= link_to 'Confirm', confirm_club_user_path(club, user), method: :put if can? :confirm, membership %>
+            <%= link_to 'Remove',  resign_club_user_path(club, user), method: :delete, data: { confirm: 'Are you sure?' } if can? :resign, club %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
