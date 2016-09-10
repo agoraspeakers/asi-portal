@@ -1,5 +1,4 @@
 class MembershipsController < ApplicationController
-  before_filter :find_membership, :only => [:confirm, :resign]
   respond_to :html
 
   def join
@@ -10,22 +9,20 @@ class MembershipsController < ApplicationController
   end
 
   def confirm
+    @membership = Membership.find_by!(membership_params)
     authorize! :confirm, @membership
     @membership.update_attributes(status: "confirmed")
     respond_with(@membership.user)
   end
 
   def resign
+    @membership = Membership.find_by!(membership_params)
     authorize! :resign, @membership.club
     @membership.destroy
     respond_with(@membership.user)
   end
 
 private
-  def find_membership
-    @membership = Membership.find_by!(membership_params)
-  end
-
   def membership_params
     params.permit(:user_id, :club_id)
   end
