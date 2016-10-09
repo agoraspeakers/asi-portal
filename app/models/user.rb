@@ -7,4 +7,10 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :club_requests, ->(){ where("memberships.status": "requested") }, class_name: "Club", through: :memberships, source: "club"
   has_many :clubs,         ->(){ where("memberships.status": "confirmed") }, class_name: "Club", through: :memberships, source: "club"
+
+  validates :name, presence: true
+
+  def formated_email
+    "#{name} <#{email}>"
+  end
 end
