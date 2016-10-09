@@ -10,6 +10,10 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+
+  geocoded_by :address
+
   def formated_email
     "#{name} <#{email}>"
   end
