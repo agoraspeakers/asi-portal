@@ -51,4 +51,4 @@ production:
   <<: *default
   database: asi-portal_production
   username: asi
-  password: <%= ENV['ASI-PORTAL_DATABASE_PASSWORD'] %>
+  password: <%= ENV['ASI_PORTAL_DATABASE_PASSWORD'] %>

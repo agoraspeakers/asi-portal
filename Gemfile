@@ -37,6 +37,7 @@ gem 'twitter'
 gem "workflow"
 gem "cancancan", "~> 1.10"
 gem "composite_primary_keys", "~> 9.0"
+gem "dotenv-rails"
 gem "geocoder"
 
 group :test do

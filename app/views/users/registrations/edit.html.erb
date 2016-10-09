@@ -11,7 +11,7 @@
     <% end %>
 
     <%= f.input :address, required: true %>
-    <p>latitude: <%= resource.latitude %>, longitude: <%= resource.longitude %></p>
+    <%= map_for(resource.geolocation) %>
 
     <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
     <%= f.input :password_confirmation, required: false %>

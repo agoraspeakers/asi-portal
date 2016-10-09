@@ -3,6 +3,12 @@
   <%= @user.formated_email %>
 </p>
 
+<p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+  <%= map_for(@user.geolocation) { "No map can be displayed" } %>
+</p>
+
 <% if @clubs_confirmed.none? %>
   <h2>Does not belong to any clubs</h2>
 <% else %>

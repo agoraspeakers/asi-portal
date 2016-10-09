@@ -17,4 +17,8 @@ class User < ApplicationRecord
   def formated_email
     "#{name} <#{email}>"
   end
+
+  def geolocation
+    "#{latitude},#{longitude}" if latitude && longitude
+  end
 end
