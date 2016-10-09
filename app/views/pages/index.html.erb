@@ -1,5 +1,9 @@
 <h3>
-  <%= link_to "Users: #{@user_count}", users_path %>
+  <% if user_signed_in? %>
+    <%= link_to "Users: #{@user_count}", users_path %>
+  <% else %>
+    <h2>Users: <%= @user_count %></h2>
+  <% end %>
 </h3>
 <h3>
   <%= link_to "Clubs: #{@club_count}", clubs_path %>

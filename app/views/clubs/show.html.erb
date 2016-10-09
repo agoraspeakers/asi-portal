@@ -16,53 +16,60 @@
 <% if @members.none? %>
   <h2>No members</h2>
 <% else %>
-  <h2>Members</h2>
-
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @members.each do |membership| user = membership.user ; club = membership.club %>
+  <% if user_signed_in? %>
+    <h2>Members</h2>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
         <tr>
-          <td><%= link_to user.email, user %></td>
-          <td>
-            <%= link_to 'Confirm', confirm_club_user_path(club, user), method: :put if can? :confirm, membership %>
-            <%= link_to 'Remove',  resign_club_user_path(club, user), method: :delete, data: { confirm: 'Are you sure?' } if can? :resign, club %>
-          </td>
+          <th>Name</th>
+          <th>Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @members.each do |membership| user = membership.user ; club = membership.club %>
+          <tr>
+            <td><%= link_to user.name, user %></td>
+            <td>
+              <%= link_to 'Confirm', confirm_club_user_path(club, user), method: :put if can? :confirm, membership %>
+              <%= link_to 'Remove',  resign_club_user_path(club, user), method: :delete, data: { confirm: 'Are you sure?' } if can? :resign, club %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h2>Members: <%= @members.count %></h2>
+  <% end %>
 <% end %>
 
 <% if @requests.none? %>
   <h2>No memberships requests</h2>
 <% else %>
-  <h2>Requests</h2>
+  <% if user_signed_in? %>
+    <h2>Requests</h2>
 
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @requests.each do |membership| user = membership.user ; club = membership.club %>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
         <tr>
-          <td><%= link_to user.name, user %></td>
-          <td>
-            <%= link_to 'Confirm', confirm_club_user_path(club, user), method: :put if can? :confirm, membership %>
-            <%= link_to 'Remove',  resign_club_user_path(club, user), method: :delete, data: { confirm: 'Are you sure?' } if can? :resign, club %>
-          </td>
+          <th>Name</th>
+          <th>Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @requests.each do |membership| user = membership.user ; club = membership.club %>
+          <tr>
+            <td><%= link_to user.name, user %></td>
+            <td>
+              <%= link_to 'Confirm', confirm_club_user_path(club, user), method: :put if can? :confirm, membership %>
+              <%= link_to 'Remove',  resign_club_user_path(club, user), method: :delete, data: { confirm: 'Are you sure?' } if can? :resign, club %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h2>Requests: <%= @requests.count %></h2>
+  <% end %>
 <% end %>
