@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :club_requests, ->(){ where("memberships.status": "requested") }, class_name: "Club", through: :memberships, source: "club"
   has_many :clubs,         ->(){ where("memberships.status": "confirmed") }, class_name: "Club", through: :memberships, source: "club"
 
+  scope :with_location, ->(){ where("users.latitude IS NOT NULL AND users.longitude IS NOT NULL") }
+
   validates :name, presence: true
 
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
@@ -20,5 +22,9 @@ class User < ApplicationRecord
 
   def geolocation
     "#{latitude},#{longitude}" if latitude && longitude
+  end
+
+  def geolocation_hash
+    { lat: latitude, lng: longitude } if latitude && longitude
   end
 end
