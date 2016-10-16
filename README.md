@@ -24,8 +24,9 @@ Usual installation path requires:
 0. in database engine create user `asi` with password `asi` with rights
    to create databases
 1. run `rails db:setup` to initialize database (`rails db:migrate` to only update)
-2. run `rails server` to start the application
-3. open browser at http://localhost:3000
+2. in `rails c` create admin user: `User.create(name: 'Michal Papis', email: 'mpapis@gmail.com', password: 'testtest', role: 'admin', address: 'Kossaka 3/4, Gorzów, Poland')`
+3. run `rails server` to start the application
+4. open browser at http://localhost:3000
 
 ## License
 
