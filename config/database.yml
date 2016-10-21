@@ -19,7 +19,7 @@ test:
 
 production: &production
   <<: *default
-  database: asi-portal_production
+  database: asi_portal_production
   username: asi
   password: <%= ENV['ASI_PORTAL_DATABASE_PASSWORD'] %>
 
