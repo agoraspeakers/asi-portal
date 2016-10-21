@@ -25,3 +25,4 @@ production: &production
 
 staging:
   <<: *production
+  socket: /var/run/mysqld/mysqld.sock
