@@ -55,5 +55,10 @@ group :development do
   gem 'listen', '~> 3.0.5'
 
   # Use Capistrano for deployment
-  gem 'capistrano-rails', group: :development
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
+end
+
+group :production do
+  gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 end
